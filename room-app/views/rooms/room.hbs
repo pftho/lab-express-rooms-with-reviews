@@ -1,0 +1,10 @@
+<h1> Welcome to the {{room.name}}</h1>
+<h2>This room was created by {{owner.fullName}}</h2>
+<img src="{{room.imageUrl}}">
+<p>{{room.description}}</p>
+
+
+{{#if isCurrentUserOwner}}
+<a href="/rooms/delete"> Edit room</a>
+<a href="/rooms/edit"> Delete room</a>
+{{/if}}
