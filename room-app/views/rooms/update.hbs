@@ -1,0 +1,20 @@
+<div id="form">
+    <h2>Update Room</h2>
+
+    <form action="/rooms/update/{{room._id}}" method="POST">
+
+        <label> Name
+            <input type="text" name="name" value="{{room.name}}" required />
+        </label>
+
+        <label> Image URL
+            <input type="text" name="imageUrl" value="{{room.imageUrl}}" required />
+        </label>
+
+        <label for="description"> Description </label>
+        <textarea rows="5" cols="45" type="text" name="description" value="{{room.description}}" required />
+        </textarea>
+
+        <button type="submit">Update</button>
+    </form>
+</div>

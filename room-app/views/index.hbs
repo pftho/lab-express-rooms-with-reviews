@@ -7,13 +7,10 @@
 <h1>List of current rooms</h1>
 
 <ul>
-    {{#each}}
-    <li>
-
-
-
-{{}}
-    </li>
+    {{#each rooms}}
+    <a href="/rooms/{{this._id}}">
+        <li>{{this.name}}</li>
+    </a>
     {{/each}}
 
 </ul>
