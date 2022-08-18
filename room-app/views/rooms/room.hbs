@@ -3,6 +3,24 @@
 <img src="{{room.imageUrl}}">
 <p>{{room.description}}</p>
 
+<h2>Reviews</h2>
+
+<ul>
+    {{#each room.reviews }}
+    <li>{{this}}</li>
+    {{/each}}
+</ul>
+
+{{#if isLoggedIn}}
+{{#unless isCurrentUserOwner}}
+<form id="form">
+    <label for=" reviews">
+        Leave a comment
+    </label>
+    <textarea rows="5" cols="45" type="text" name="reviews"> </textarea>
+</form>
+{{/unless}}
+{{/if}}
 
 {{#if isCurrentUserOwner}}
 <a href="/rooms/update/{{room._id}}"> Edit room</a>
