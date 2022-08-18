@@ -3,6 +3,8 @@
 <img src="{{room.imageUrl}}">
 <p>{{room.description}}</p>
 
+{{#if room.reviews}}
+
 <h2>Reviews</h2>
 
 <ul>
@@ -10,6 +12,8 @@
     <li>{{this}}</li>
     {{/each}}
 </ul>
+
+{{/if}}
 
 {{#if isLoggedIn}}
 {{#unless isCurrentUserOwner}}

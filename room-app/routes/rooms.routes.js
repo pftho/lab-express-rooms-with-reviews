@@ -19,10 +19,13 @@ router.post("/create", isLoggedIn, (req, res) => {
   );
 });
 
+// NOT WORKING FOR ITERATION 3
+// Can see reviews loogin or loggues out
+
 router.get("/rooms/:roomId", (req, res) => {
   const { roomId } = req.params;
   const { currentUser } = req.session;
-  // I had help for the is CurrentUserOwner
+
   Room.findById(roomId)
     .then((room) => {
       User.findById(room.owner).then((owner) => {
@@ -33,7 +36,27 @@ router.get("/rooms/:roomId", (req, res) => {
           room,
           isCurrentUserOwner:
             currentUser && owner._id.toString() === currentUser._id,
-        });
+        }); // I had help for this line
+      });
+    })
+    .catch((err) => console.log(err));
+});
+
+// Can only comment if not owner and logged
+router.get("/rooms/:roomId", isLoggedIn, (req, res, next) => {
+  const { roomId } = req.params;
+  const { currentUser } = req.session;
+
+  Room.findById(roomId)
+    .populate("reviews")
+    .then((room) => {
+      User.findById(room.owner).then((owner) => {
+        res.render("rooms/room", {
+          owner,
+          room,
+          isCurrentUserOwner:
+            currentUser && owner._id.toString() === currentUser._id,
+        }); // I had help for this line
       });
     })
     .catch((err) => console.log(err));
